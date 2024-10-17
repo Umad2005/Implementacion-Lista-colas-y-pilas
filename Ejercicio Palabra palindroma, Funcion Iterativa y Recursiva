@@ -1,0 +1,48 @@
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Stack;
+
+public class Ejercicio1 {
+    static Stack<Character> pila = new Stack();
+    static Queue<Character> cola = new LinkedList<>();
+    static int i=0;
+
+    //Funcion Iterativa
+    public static boolean funcion (String palabra) {
+
+        for (int i=0; i < palabra.length(); i++){
+            pila.push(palabra.charAt(i));
+            cola.add(palabra.charAt(i));
+        }
+        while(!pila.isEmpty()){
+            if(pila.pop() != cola.poll())
+                return false;
+        }
+        return true;
+    }
+    //Funcion Recursiva
+    public static boolean funcionR(String palabra){
+        if(i==palabra.length())
+        return  false;
+        else{
+            char letra = palabra.charAt(i);
+            cola.add(palabra.charAt(i));
+            i++;
+            funcionR(palabra);
+
+
+        }
+        return false;
+    }
+
+    public static void main(String[] args){
+
+        String palabra="ARENERA";
+        if(funcion(palabra))
+            System.out.println("Es palindrome");
+        else
+            System.out.println("No es palindromo");
+
+    }
+
+}
